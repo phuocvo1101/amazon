@@ -47,15 +47,32 @@ class ManageModel extends Database
         return $result;
 
 	}
-    public function getNegative()
+    public function getNegatives()
 	{
         $where= "IN (1,2,3)";
         $query="SELECT * FROM feedback	WHERE rating ".$where;
-        
         $this->setquery($query);
         
         $result = $this->loadAllRows();
+        //var_dump($result);die();
 
+        return $result;
+	}
+     public function getNegativeslimit($start,$limit)
+	{
+	  // echo 'sss';die();
+        $where= "IN (1,2,3)";
+        $query="SELECT * FROM feedback	WHERE rating ".$where." "."LIMIT ?,?";
+        var_dump($query);die();
+        $this->setQuery($query);
+
+        $result = $this->execute(array(
+            array($start,PDO::PARAM_INT),
+            array($limit,PDO::PARAM_INT)
+        ));
+        if(!$result) {
+            return false;
+        }
         return $result;
 	}
 
@@ -110,7 +127,7 @@ class ManageModel extends Database
         $query="SELECT idQuanHuyen,TenQuanHuyen FROM quan  ORDER BY idQuanHuyen DESC";
         $this->setquery($query);
         $result = $this->loadAllRows();
-
+//var_dump($result);die();
         return $result;
     }
     public function getNhomKhachHang()

@@ -7,7 +7,7 @@ class Database
     protected  $host='localhost';
     protected $user='root';
     protected $pass='';
-    protected $db='qlkhachhang';
+    protected $db='daeta';
     //khoi tao lop ket noi den CSDL
     public function Database()
     {
