@@ -10,7 +10,7 @@
           </div>
           <div class="row">
             <div class="col-xs-6 col-sm-6">
-                 <ol class="breadcrumb">   
+                 <ol class="breadcrumb">
                   <li><a href="index.php?controller=positive&action=index">Positive Feedback</a></li>
                   <li><a href="index.php?controller=negative&action=index">Negative Feedback</a></li>
                 </ol>
@@ -54,8 +54,8 @@
                 </tr>
               </thead>
               <tbody>
-              {if isset($negatives)}
-                    {foreach $negatives as $key=>$item}
+              {if isset($positives)}
+                    {foreach $positives as $key=>$item}
                 <tr>
                   <td>{$item->amazonorder}</td>
                   <td>{$item->buyer}</td>
@@ -84,8 +84,8 @@
                      </ul>
                 </td>
               </tr>
-            </table>
-          </div>
-          
+            </table>       
+
+		</div>
     </div>
 </form>
