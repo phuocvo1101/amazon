@@ -17,27 +17,29 @@ class ManageController extends  BaseController
        // $cu= $this->manageModel->getDistricts();
         $Negatives = $this->manageModel->getNegatives();
         
-        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 2;
+        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 3;
 
-        $Pagination = new Pagination($limit);//,$base_url
+        $Pagination = new Pagination($limit,'index.php?controller=negative&action=index');//,$base_url
         $totalRecord = count($Negatives); // Tổng số user có trong database
         $totalPages = $Pagination->totalPages($totalRecord); // Tổng số trang tìm được
         $limit = (int)$Pagination->limit; // Số record hiển thị trên một trang
         $start = (int)$Pagination->start(); // Vị trí của record
 
-        $Negativelimit = $this->manageModel->getNegativeslimit(0,2);
-        var_dump($Negativelimit);die();
+        $Negativelimit = $this->manageModel->getNegativeslimit($start,$limit);
+       // echo '<pre>'.print_r($Negativelimit,true).'</pre>';die();
         $listPage= $Pagination->listPages($totalPages);
 
 
         $this->template->assign('negatives',$Negativelimit);
 
-            $this->template->assign('listPage',$listPage);
+        $this->template->assign('listPage',$listPage);
 
 
         $this->template->assign('listPage',$listPage);
 
 		return $this->template->fetch('manage/index.tpl');
 	}
+   
+
 }
 ?>

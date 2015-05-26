@@ -6,8 +6,12 @@ $content = "";
     if(isset($_GET["controller"]) && isset($_GET['action'])) {
 
 		switch($_GET["controller"]) {
-			case "manage":
+			
+            case "negative":
 				$basecontroller = new ManageController();
+				break;
+            case "positive":
+				$basecontroller = new PositiveController();
 				break;
 			default:
 				$basecontroller = new ManageController();
@@ -20,21 +24,13 @@ $content = "";
 			case 'indexajax':
 				$content = $basecontroller->indexAjaxAction();
 				break;
-            case 'indexthanhvien':
-                $content = $basecontroller->indexActionThanhVien();
-                break;
-			case 'view':
-				$content = $basecontroller->viewAction();
-				break;
-			case 'viewajax':
-				$content = $basecontroller->viewAjaxAction();
-				break;
+            
 			default:
 				$content =$basecontroller->indexAction();
 				break;
 		}	
 	} else {
-        $_GET['controller'] = 'manage';
+        $_GET['controller'] = 'negative';
         $_GET['action'] = 'index';
 		$basecontroller = new ManageController();
 		$content = $basecontroller->indexAction();

@@ -3,12 +3,12 @@ class Pagination
 {
 
     public $limit = ''; // sá»‘ record hiá»ƒn thá»‹ trÃªn má»™t trang
-// protected $_baseUrl;
+ protected $_baseUrl;
 
 
-    public function Pagination($limit)//$base_url
+    public function Pagination($limit,$base_url)//$base_url
     {
-        //$this->_baseUrl = $base_url;
+        $this->_baseUrl = $base_url;
         $this->limit = $limit;
     }
     /**
@@ -48,7 +48,7 @@ class Pagination
             $current = ($start/$limit) + 1; // trang hiá»‡n táº¡i
             if($current != 1){ // NÃºt prev
                 $newstart = $start - $limit;
-                $listPage .= "<a onclick='getPage(".$totalPages.",".$newstart.",".$limit.");' href='javascript:void(0);'>Prev</a>";
+                $listPage .= "<a href='".$this->_baseUrl."&pages=".$totalPages."&start=".$newstart."&limit=".$limit."'>Prev</a>";
             }
 
 
@@ -57,13 +57,13 @@ class Pagination
                 if($i == $current){
                     $listPage .= "<span class='current'>".$i."</span>";
                 }else{
-                    $listPage .= "<a onclick='getPage(".$totalPages.",".$newstart.",".$limit.");' href='javascript:void(0);'>".$i."</a>";
+                    $listPage .= "<a href='".$this->_baseUrl."&pages=".$totalPages."&start=".$newstart."&limit=".$limit."'>".$i."</a>";
                 }
             }
 
             if($current != $totalPages){ // NÃºt next
                 $newstart = $start + $limit;
-                $listPage .= "<a onclick='getPage(".$totalPages.",".$newstart.",".$limit.");' href='javascript:void(0);'>Next</a>";
+                $listPage .= "<a href='".$this->_baseUrl."&pages=".$totalPages."&start=".$newstart."&limit=".$limit."'>Next</a>";
             }
         }
 

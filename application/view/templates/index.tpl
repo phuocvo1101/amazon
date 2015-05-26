@@ -46,14 +46,9 @@
       <!-- menu left -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Manage Orders</a></li>
+            
             <li><a href="#">Manage Feedback</a></li>
-            <li><a href="#">Auto Exclusion</a></li>
-            <li><a href="#">Email Template</a></li>
-            <li><a href="#">Options</a></li>
-            <li><a href="#">My Account</a></li>
-            <li><a href="#">Customer Support</a></li>
+            
           </ul>       
         </div>
         <!-- end menuleft -->
