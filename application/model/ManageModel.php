@@ -2,62 +2,105 @@
 class ManageModel extends Database
 {
 
-    public function getNegatives()
+    public function getNegatives($search='')
 	{
+ 
+        $arrSearch=array();
+        $strLike = '';
         $where= "IN (1,2,3)";
-        $query="SELECT * FROM feedback	WHERE rating ".$where;
+        if(!empty($search)){
+                $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
+            }   
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike;
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
+        
         $this->setquery($query);
         
-        $result = $this->loadAllRows();
-        //var_dump($result);die();
+        $result = $this->loadAllRows($arrSearch);
+       // var_dump($result);die();
 
         return $result;
 	}
-     public function getNegativeslimit($start,$limit)
+     public function getNegativeslimit($start,$limit,$search='')
 	{
 	  // echo 'sss';die();
+       $arrSearch=array();
+        $strLike = '';
         $where= "IN (1,2,3)";
-        $query="SELECT * FROM feedback	WHERE rating ".$where." "." LIMIT ?, ?";
+        if(!empty($search)){
+                $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
+        }   
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike." "." ORDER BY feedbackdate desc LIMIT ?, ?";
        
         $this->setQuery($query);
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
 
-        $result = $result= $this->loadAllRows(array(
-            array($start,PDO::PARAM_INT),
-            array($limit,PDO::PARAM_INT)
-        ));
+        $arrSearch[] =array($start,PDO::PARAM_INT);
+        $arrSearch[] =array($limit,PDO::PARAM_INT);
+
+        $result = $result= $this->loadAllRows($arrSearch);
         // var_dump($result);die();
         if(!$result) {
-            return false;
+            return array();
         }
         return $result;
 	}
     
-     public function getPositives()
+     public function getPositives($search='')
 	{
+	   $arrSearch=array();
+        $strLike = '';
         $where= "IN (4,5)";
-        $query="SELECT * FROM feedback	WHERE rating ".$where;
+        if(!empty($search)){
+                $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
+            }   
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike;
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
+        
         $this->setquery($query);
         
-        $result = $this->loadAllRows();
-        //var_dump($result);die();
+        $result = $this->loadAllRows($arrSearch);
+       // var_dump($result);die();
 
         return $result;
+	   //////
 	}
-     public function getPositiveslimit($start,$limit)
+     public function getPositiveslimit($start,$limit,$search='')
 	{
-	  // echo 'sss';die();
+	   $arrSearch=array();
+        $strLike = '';
         $where= "IN (4,5)";
-        $query="SELECT * FROM feedback	WHERE rating ".$where." "." LIMIT ?, ?";
+        if(!empty($search)){
+                $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
+        }   
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike." "." ORDER BY feedbackdate desc LIMIT ?, ?";
        
         $this->setQuery($query);
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
 
-        $result = $result= $this->loadAllRows(array(
-            array($start,PDO::PARAM_INT),
-            array($limit,PDO::PARAM_INT)
-        ));
+        $arrSearch[] =array($start,PDO::PARAM_INT);
+        $arrSearch[] =array($limit,PDO::PARAM_INT);
+
+        $result = $result= $this->loadAllRows($arrSearch);
         // var_dump($result);die();
         if(!$result) {
-            return false;
+            return array();
         }
         return $result;
 	}

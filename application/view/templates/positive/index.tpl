@@ -1,5 +1,5 @@
 
-<form>
+<form action="index.php?controller=positive&action=index" method="post">
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           
 
@@ -16,21 +16,14 @@
                 </ol>
             </div>
            <div class="col-sm-2"></div>
-            <div class="col-sm-4">
+           <div class="col-sm-4">
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="...">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span></button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                    </ul>
-                  </div>
+                  <input type="text" class="form-control" id="search" name="search" value="{if isset($search)}{$search}{/if}" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <input class="btn btn-default" type="submit" id="go" name="go" value="Go!" />
+                  </span>
                 </div>
-              </div>
+            </div>
              
           </div>
           
@@ -65,7 +58,12 @@
                   <td>{$item->orderdate}</td>
                   <td>{$item->lastsolicited}</td>
                   <td>{$item->feedbackdate}</td>
-                  <td>{$item->fba}</td>
+                  <td>{if $item->fba==1}
+                         AFN
+                    {else}
+                        MFN
+                    {/if}
+                    </td>
                   <td>{$item->removalrequested}</td>
                   <td>{$item->caseid}</td>
                   <td>{$item->notes}</td>
