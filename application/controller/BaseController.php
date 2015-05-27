@@ -7,11 +7,6 @@ abstract class BaseController
 	{
 		global $template;
 		$this->template = $template;
-		// checkLogin
-	//	if(!isset($_SESSION['userid']) && isset($_GET['controller']) && $_GET['controller']!='user' && 
-	//	isset($_GET['action']) && $_GET['action']!='login'  ) {
-	//		header('location:index.php?controller=user&action=login');
-	//	} 
 	}
 	public   function indexAction()
 	{
