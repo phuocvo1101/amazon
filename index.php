@@ -32,7 +32,7 @@ if(isset($_SESSION['username'])){
 if(isset($_SESSION['userid'])){
     $template->assign('userid',$_SESSION['userid']);
 }
-
+include_once (PATH_CONTROLLER.'BaseController.php');
 include_once (PATH_CONFIG.'controller.php');
 
 include_once (PATH_CONFIG.'router.php');
