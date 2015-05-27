@@ -56,9 +56,9 @@
                   <td>{$item->rating}</td>
                   <td>{$item->comment}</td>
                   <td>{$item->skus}</td>
-                  <td>{$item->orderdate}</td>
+                  <td>{$item->orderdate|date_format:"%D"}</td>
                   <td>{$item->lastsolicited}</td>
-                  <td>{$item->feedbackdate}</td>
+                  <td>{$item->feedbackdate|date_format:"%D"}</td>
                   <td>
                   {if $item->fba==1}
                          AFN
