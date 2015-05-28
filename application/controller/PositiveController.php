@@ -40,6 +40,9 @@ class PositiveController extends  BaseController
        
         $this->template->assign('positives',$Positivelimit);
         $this->template->assign('search',$search);
+        $this->template->assign('totalrecords',$totalRecord);
+        $this->template->assign('limit',$limit);
+        $this->template->assign('totalpages',$totalPages);
 
         $this->template->assign('listPage',$listPage);
 
