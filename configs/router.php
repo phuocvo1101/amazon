@@ -13,6 +13,9 @@ $content = "";
             case "positive":
 				$basecontroller = new PositiveController();
 				break;
+            case "order":
+				$basecontroller = new OrdersController();
+				break;
 			default:
 				$basecontroller = new ManageController();
 				break;	
