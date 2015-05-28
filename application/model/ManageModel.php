@@ -25,6 +25,8 @@ class ManageModel extends Database
 
         return $result;
 	}
+   
+    
      public function getNegativeslimit($start,$limit,$search='')
 	{
 	  // echo 'sss';die();
