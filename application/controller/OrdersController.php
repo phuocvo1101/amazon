@@ -25,8 +25,9 @@ class OrdersController extends  BaseController
         }
         
         $Orders = $this->ordersModel->getOrders($search);
+       // var_dump($Orders);die();
         
-        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
+        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 2;
 
         $Pagination = new Pagination($limit,'index.php?controller=order&action=index&search='.$search);//,$base_url
         $totalRecord = count($Orders); 

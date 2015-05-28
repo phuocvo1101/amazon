@@ -16,8 +16,11 @@ $content = "";
             case "order":
 				$basecontroller = new OrdersController();
 				break;
+            case "dashboard":
+				$basecontroller = new DashboardController();
+				break;
 			default:
-				$basecontroller = new ManageController();
+				$basecontroller = new DashboardController();
 				break;	
 		}
 		switch(strtolower($_GET['action'])) {
@@ -33,9 +36,9 @@ $content = "";
 				break;
 		}	
 	} else {
-        $_GET['controller'] = 'negative';
+        $_GET['controller'] = 'dashboard';
         $_GET['action'] = 'index';
-		$basecontroller = new ManageController();
+		$basecontroller = new DashboardController();
 		$content = $basecontroller->indexAction();
 	}	
 

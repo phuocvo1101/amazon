@@ -10,7 +10,8 @@ class OrdersModel extends Database
         if(!empty($search)){
                 $strLike = ' WHERE (amazonorder like ? OR buyer LIKE ? OR itemspurchased LIKE ?)';
             }   
-        $query="SELECT * FROM order "." ".$strLike.' ORDER BY datesend';
+        $query="SELECT * FROM orders "." ".$strLike.' ORDER BY datesend desc';
+        //echo $query;die();
         if(!empty($search)) {
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
@@ -32,7 +33,7 @@ class OrdersModel extends Database
         if(!empty($search)){
                 $strLike = ' WHERE (amazonorder like ? OR buyer LIKE ? OR itemspurchased LIKE ?)';
         }   
-        $query="SELECT * FROM order "." ".$strLike." "." ORDER BY datesend desc LIMIT ?, ?";
+        $query="SELECT * FROM orders "." ".$strLike." "." ORDER BY datesend desc LIMIT ?, ?";
        
         $this->setQuery($query);
         if(!empty($search)) {
