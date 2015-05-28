@@ -19,7 +19,7 @@
 				<div class="info-box  bg-info  text-white">
 					<div class="info-icon bg-info-dark">
                     <span class="glyphicon glyphicon-eye-open fa-4x" aria-hidden="true"></span>
-					<span class="pull-right"><h1>233</h1></span>
+					<span class="pull-right"><h1>{if isset($totalpositive)}{$totalpositive}{/if}</h1></span>
 					</div>
 					<div class="info-details">
 						<h4>POSITIVE FEEDBACK RECEIVED</h4>
@@ -30,7 +30,7 @@
 				<div id="initial-tour" class="info-box  bg-success  text-white">
 					<div class="info-icon bg-success-dark">
                     <span class="glyphicon glyphicon-eye-close fa-4x"></span>
-					<span class="pull-right"><h1>23</h1></span>
+					<span class="pull-right"><h1>{if isset($totalnegative)}{$totalnegative}{/if}</h1></span>
 					</div>
 					<div class="info-details">
 						<h4>NEGATIVE FEEDBACK RECEIVED  </h4>
@@ -42,7 +42,7 @@
 				<div class="info-box  bg-warning  text-white">
 					<div class="info-icon bg-info-dark">
 						 <span class="glyphicon glyphicon-shopping-cart fa-4x"></span>
-                        <span class="pull-right"><h1>65</h1></span>
+                        <span class="pull-right"><h1>{if isset($totalorders)}{$totalorders}{/if}</h1></span>
 					</div>
 					<div class="info-details">
                      <h4 >ORDERS IMPORTED</h4>
