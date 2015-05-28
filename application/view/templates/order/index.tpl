@@ -3,7 +3,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             
           <div class="row">
-           <div class="col-xs-6 col-sm-3">
+           <div class="col-xs-6 col-sm-12">
                  <ol class="breadcrumb">   
                   <li><a href="#">Home</a></li>
                   <li class="active">Order</li>
@@ -12,7 +12,7 @@
           </div>
           <div class="row">
            <div class="col-xs-6 col-sm-6 placeholder">
-              <h1 align="left">Orders</h1>
+              <h1 class="page-header" align="left"><i class="fa fa-shopping-cart"></i><span>  Orders</span></h1>
             </div>
            <div class="col-sm-2"></div>
           
