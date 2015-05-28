@@ -1,5 +1,5 @@
 /*
-SQLyog Ultimate v9.10 
+SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.1.73 : Database - daeta
 *********************************************************************
 */
@@ -12,6 +12,10 @@ MySQL - 5.1.73 : Database - daeta
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`daeta` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+
+USE `daeta`;
+
 /*Table structure for table `feedback` */
 
 DROP TABLE IF EXISTS `feedback`;
@@ -38,6 +42,30 @@ CREATE TABLE `feedback` (
 /*Data for the table `feedback` */
 
 insert  into `feedback`(`id`,`amazonorder`,`buyer`,`rating`,`comment`,`skus`,`orderdate`,`lastsolicited`,`feedbackdate`,`fba`,`removalrequested`,`caseid`,`notes`,`email`) values (81,'107-1180698-3931440','Jose Lopez',3,'I bought two pieces and send them appart. And i din\'t like the packaged','0E-KYRE-OJ7G',1420731613,NULL,1424970000,1,NULL,NULL,NULL,'qm9pnxl603fjyzs@marketplace.amazon.com'),(82,'002-8915841-2113069','John Zuckerman',2,'Connector on battery did not have screw hole to securely attach to my iPhone 4.','iPhone_4_BattKit',1424130704,NULL,1424710800,1,NULL,NULL,NULL,'s5wvxhkfqmftzr5@marketplace.amazon.com'),(83,'106-6347732-6738621','budy jajady',3,'No packing box, just put at clear plactic, and no brand at plastic. Just put 1 business card. So far the battery is fit at my iphone. I will update my review if something wrong with battery.','iPhone_5s_BattKit',1432007984,NULL,1432573200,1,NULL,NULL,NULL,'g2f8z79y95qscrk@marketplace.amazon.com'),(84,'103-7762273-3379430','Louisa Scoggins',1,'iphone 4 battery replacement did not work. Have to order an other iphone 4 battery from a different company.','iPhone_4_BattKit',1432424264,NULL,1432573200,1,NULL,NULL,NULL,'1ssym5838zy2nmv@marketplace.amazon.com'),(85,'109-9311196-6244249','Catherine A Goodwin',3,'Seller sent wrong item (sent battery for sony, not iphone, the box with the battery was all bent up, and had obviously been open before, and had the letter S (for sony?) hand written on it) they have ','iPhone_4_BattKit',1431350219,NULL,1432486800,1,NULL,NULL,NULL,'5jr8nmhckc0421f@marketplace.amazon.com'),(86,'103-3591095-7030638','Henry Lara',1,'No instructions on how to replace the battery. There was a link to a video but the link didn\'t work so I had no way to know how to know how to replace the battery.','iPhone_5s_BattKit',1432340097,NULL,1432486800,1,NULL,NULL,NULL,'fc1s9t47d6dxyxz@marketplace.amazon.com'),(87,'107-6713758-5797043','Gary Parish',2,'Nice quick delivery or the wrong battery. Am returning the kit for a refund and will seek it elsewhere. Order was for an iPhone 4 battery and battery in the package was marked on the box with an S in ','iPhone_4_BattKit',1431789762,NULL,1432141200,1,NULL,NULL,NULL,'ltydsb1p800bm92@marketplace.amazon.com'),(88,'107-6858380-8613820','jared bradt',1,'Installed the battery and had problems right away. Took to phone to Apple Store and and tested battery and results showed battery at 20%. I was upset since the battery was new and only had 2 hours on ','DW-3TOT-B5SD',1431457387,NULL,1431882000,1,NULL,NULL,NULL,'bqy7jbz3jk9b0dt@marketplace.amazon.com'),(89,'105-2486153-5968219','Corbin Douthitt',3,'Item no usable.. unable to install.not sellers fault. my fone has a cable to the \'touch id\' button that I could not disconnect.','iPhone_5s_BattKit',1431468138,NULL,1431882000,1,NULL,NULL,NULL,'tn082c78hk3xbkb@marketplace.amazon.com'),(90,'112-8367048-5309863','James Mongillo',3,'Service was very good, but the head of the small phillips screwdriver was distorted and not usable. Battery installation went smoothly, but too soon to comment on the performance. So far it is good.','iPhone_5s_BattKit',1431407440,NULL,1431795600,1,NULL,NULL,NULL,'1xf5fwk72mn3cf9@marketplace.amazon.com'),(91,'107-9472140-1635452','Michael Shacklee',2,'I purchased this battery for my daughter\'s iPhone 5. Item arrived on time and with the tools required. I installed the battery, made sure the phone was off, and charged the phone to 100%. I powered th','iPhone_5_BattKit',1431150117,NULL,1431450000,1,NULL,NULL,NULL,'0nssf00d2frs6ww@marketplace.amazon.com'),(92,'115-1894105-2628255','Harry J Berkley',3,'The package arrived in 2 days, despite my paying for overnight delivery. This was due to the USPS - still not acceptable. The picture shown is different than what\'s in the package. Not all the tools s','iPhone_5_BattKit',1431361525,NULL,1431450000,1,NULL,NULL,NULL,'6yh2nd710bb6cb4@marketplace.amazon.com');
+
+/*Table structure for table `order` */
+
+DROP TABLE IF EXISTS `order`;
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amazonorder` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `orderdate` int(11) DEFAULT NULL,
+  `datetosend` int(11) DEFAULT NULL,
+  `datesend` int(11) DEFAULT NULL,
+  `buyer` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `itemspurchased` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `fba` int(11) DEFAULT NULL,
+  `dns` int(11) DEFAULT NULL,
+  `solicitreason` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `order` */
+
+insert  into `order`(`id`,`amazonorder`,`orderdate`,`datetosend`,`datesend`,`buyer`,`itemspurchased`,`status`,`fba`,`dns`,`solicitreason`,`email`) values (1,'107-1180698-3931440',1420731613,0,1424970000,'Jose Lopez','iphone_5s',1,1,1,NULL,'qm9pnxl603fjyzs@marketplace.amazon.com'),(2,'002-8915841-2113069',1424130704,NULL,1424130704,'John Zuckerman','iphone_6',1,1,NULL,NULL,'qm9pnxl603fjeyzs@marketplace.amazon.com'),(3,'106-6347732-6738621',1420731613,NULL,1424970000,'budy jajady','iphone_6',1,1,NULL,NULL,'qm9pnxl603fjeyzs@marketplfface.amazon.com');
 
 /*Table structure for table `reportlist` */
 

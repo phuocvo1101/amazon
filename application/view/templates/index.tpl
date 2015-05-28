@@ -46,9 +46,9 @@
       <!-- menu left -->
         <div class="col-sm-2 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            
+            <li><a href="#">Dashboard</a></li>       
             <li><a href="#">Manage Feedback</a></li>
-            
+            <li><a href="index.php?controller=order&action=index">Manage Orders</a></li>        
           </ul>       
         </div>
         <!-- end menuleft -->
