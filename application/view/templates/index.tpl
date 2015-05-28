@@ -46,9 +46,9 @@
       <!-- menu left -->
         <div class="col-sm-2 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="index.php?controller=dashboard&action=index">Dashboard</a></li>       
-            <li><a href="index.php?controller=negative&action=index">Manage Feedback</a></li>
-            <li><a href="index.php?controller=order&action=index">Manage Orders</a></li>        
+            <li><a href="index.php?controller=dashboard&action=index"><i class="fa fa-dashboard"></i><span class="hidden-minibar">  Dashboard<span></a></li>       
+            <li><a href="index.php?controller=negative&action=index"><i class="fa fa-comments"></i>  Manage Feedback</a></li>
+            <li><a href="index.php?controller=order&action=index"><i class="fa fa-shopping-cart"></i>  Manage Orders</a></li>        
           </ul>       
         </div>
         <!-- end menuleft -->

@@ -2,10 +2,17 @@
 <form action="index.php?controller=positive&action=index" method="post">
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           
-
+          <div class="row">
+           <div class="col-xs-6 col-sm-12">
+                 <ol class="breadcrumb">   
+                  <li><a href="#">Home</a></li>
+                  <li class="active">Feedback</li>
+                </ol>
+            </div>
+          </div>
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-              <h1 align="left">Feedback</h1>
+              <h1 align="left"><i class="fa fa-comments"></i><span>  Feedback</span></h1>
             </div>
           </div>
           <div class="row">
