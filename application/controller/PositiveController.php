@@ -25,7 +25,7 @@ class PositiveController extends  BaseController
         }
         $Positives = $this->manageModel->getPositives($search);
         
-        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 3;
+        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
 
         $Pagination = new Pagination($limit,'index.php?controller=positive&action=index&search='.$search);//,$base_url
         $totalRecord = count($Positives); 

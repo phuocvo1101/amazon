@@ -37,9 +37,6 @@ abstract class MarketplaceWebService_Model
                 $this->fromAssociativeArray($data);
             } elseif ($this->isDOMElement($data)) {
                 $this->fromDOMElement($data);
-            } else {
-                throw new Exception ("Unable to construct from provided data. 
-                                Please be sure to pass associative array or DOMElement");
             }
             
         }
