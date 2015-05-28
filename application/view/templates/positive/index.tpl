@@ -34,6 +34,7 @@
                   <th>Amazon Order#</th>
                   <th>Buyer</th>
                   <th>Rating</th>
+                  <th>Email</th>
                   <th>Comments</th>
                   <th>SKUs</th>
                   <th>Order Date</th>
@@ -53,6 +54,7 @@
                   <td>{$item->amazonorder}</td>
                   <td>{$item->buyer}</td>
                   <td>{$item->rating}</td>
+                  <td>{$item->email}</td>
                   <td>{$item->comment}</td>
                   <td>{$item->skus}</td>
                   <td>{$item->orderdate|date_format:"%D"}</td>

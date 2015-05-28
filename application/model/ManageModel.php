@@ -11,7 +11,7 @@ class ManageModel extends Database
         if(!empty($search)){
                 $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
             }   
-        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike;
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike.' ORDER BY feedbackdate';
         if(!empty($search)) {
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
@@ -51,6 +51,7 @@ class ManageModel extends Database
         if(!$result) {
             return array();
         }
+
         return $result;
 	}
     
@@ -62,7 +63,7 @@ class ManageModel extends Database
         if(!empty($search)){
                 $strLike = ' AND (amazonorder like ? OR buyer LIKE ? or skus LIKE ?)';
             }   
-        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike;
+        $query="SELECT * FROM feedback	WHERE rating ".$where." ".$strLike.' ORDER BY feedbackdate';
         if(!empty($search)) {
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
             $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);

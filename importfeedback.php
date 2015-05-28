@@ -1,14 +1,16 @@
 <?php
 include_once('./mws/report.config.inc.php');
 include_once('./library/Database.php');
-
-
+include_once('output.php');
+$colors = new Colors();
 $config = array (
     'ServiceURL' => 'https://mws.amazonservices.com',
     'ProxyHost' => null,
     'ProxyPort' => -1,
     'MaxErrorRetry' => 3,
 );
+echo $colors->getColoredString('Begin Imported FeedBack',"red","green");
+echo "\n";
 
 $version = '2009-01-01';
 $service = new MarketplaceWebService_Client(
@@ -19,9 +21,11 @@ $service = new MarketplaceWebService_Client(
     $version);
 
 $database = new Database();
-$query = 'SELECT * FROM reportlist WHERE status=0 limit 0,1';
+$query = 'SELECT * FROM reportlist WHERE status=0 limit 0,5';
 $database->setQuery($query);
 $listreportid = $database->loadAllRows();
+
+echo $colors->getColoredString('Total report_id:'.count($listreportid),"green","blue");
 
 foreach($listreportid as $itemReport) {
     $request = new MarketplaceWebService_Model_GetReportRequest();
@@ -31,11 +35,13 @@ foreach($listreportid as $itemReport) {
     invokeGetReport($service, $request,$database);
 }
 
-echo 'Imported FeedBack was successful';
+echo $colors->getColoredString('Imported FeedBack was successful',"red","blue");
+echo "\n";
 
 function invokeGetReport(MarketplaceWebService_Interface $service, $request,$database)
 {
     try {
+        $colors = new Colors();
         $response = $service->getReport($request);
         $fp = $request->getReport();
         $row = array();
@@ -44,8 +50,6 @@ function invokeGetReport(MarketplaceWebService_Interface $service, $request,$dat
         while($fields = fgetcsv($fp, 0, "\t")) {
 
             if($i!=0) {
-
-
                $order = invoke_getorder($fields[7]);
 
                 $orderItem = invoke_getorderitem($fields[7]);
@@ -53,7 +57,8 @@ function invokeGetReport(MarketplaceWebService_Interface $service, $request,$dat
                 $rating = $fields[1];
                 $comment = $fields[2];
                 $sku = $orderItem['ListOrderItemsResponse']['ListOrderItemsResult']['OrderItems']['OrderItem']['SellerSKU'];
-                $date = $order['GetOrderResponse']['GetOrderResult']['Orders']['Order']['PurchaseDate'];;
+                $date = $order['GetOrderResponse']['GetOrderResult']['Orders']['Order']['PurchaseDate'];
+                $email = $fields[8];
                 $orderdate = date("U",strtotime($date));
                 $arrDate = explode('/',$fields[0]);
                 $feedbackdate = mktime(0,0,0,$arrDate[0],$arrDate[1],'20'.$arrDate[2]);
@@ -63,10 +68,26 @@ function invokeGetReport(MarketplaceWebService_Interface $service, $request,$dat
                     $fba=0;
                 }
 
-                $query = 'INSERT INTO feedback(amazonorder,buyer,rating,comment,skus,orderdate,feedbackdate,fba)
-                          VALUES('.$fields[7].',"'.$buyer.'",'.$rating.',"'.$comment.'","'.$sku.'",'.$orderdate.','.$feedbackdate.','.$fba.')';
+                $query = 'INSERT INTO feedback(amazonorder,buyer,rating,comment,skus,orderdate,feedbackdate,fba,email)
+                          VALUES(?,?,?,?,?,?,?,?,?)';
+
                 $database->setQuery($query);
-                $result = $database->execute();
+                $data = array(
+                    array($fields[7],PDO::PARAM_STR),
+                    array($buyer,PDO::PARAM_STR),
+                    array($rating,PDO::PARAM_INT),
+                    array($comment,PDO::PARAM_STR),
+                    array($sku,PDO::PARAM_STR),
+                    array($orderdate,PDO::PARAM_INT),
+                    array($feedbackdate,PDO::PARAM_INT),
+                    array($fba,PDO::PARAM_INT),
+                    array($email,PDO::PARAM_STR)
+                );
+                $result = $database->execute($data);
+
+                echo $colors->getColoredString('FeedBack:',"yellow");
+                echo $colors->getColoredString(print_r($data,true),"green");
+                echo "\n";
 
             }
             $i++;
@@ -78,7 +99,9 @@ function invokeGetReport(MarketplaceWebService_Interface $service, $request,$dat
         $database->setQuery($query);
         $result = $database->execute();
         if($result) {
-            echo 'Imported :'.$request->getReportId()."\n";
+            echo $colors->getColoredString('Imported feedback:',"yellow");
+            echo $colors->getColoredString($request->getReportId(),"red");
+            echo "\n";
         }
 
     } catch (MarketplaceWebService_Exception $ex) {
@@ -94,9 +117,6 @@ function invokeGetReport(MarketplaceWebService_Interface $service, $request,$dat
 
 function invoke_getorder($orderId)
 {
-//    include_once('./mws/order.config.inc.php');
-
-
 
     $config = array (
         'ServiceURL' => 'https://mws.amazonservices.com/Orders/2013-09-01',

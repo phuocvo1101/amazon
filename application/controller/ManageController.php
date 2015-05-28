@@ -26,7 +26,7 @@ class ManageController extends  BaseController
         
         $Negatives = $this->manageModel->getNegatives($search);
         
-        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 3;
+        $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
 
         $Pagination = new Pagination($limit,'index.php?controller=negative&action=index&search='.$search);//,$base_url
         $totalRecord = count($Negatives); 
