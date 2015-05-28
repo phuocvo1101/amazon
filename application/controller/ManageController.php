@@ -14,6 +14,7 @@ class ManageController extends  BaseController
 	
 	public function indexAction()
 	{
+	   
 	   if(isset($_GET['search'])){
 	       $search=$_GET['search'];
 	   }else{
@@ -27,7 +28,8 @@ class ManageController extends  BaseController
         $Negatives = $this->manageModel->getNegatives($search);
         
         $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
-
+        //$limit=$_POST['recordlimit']?$_POST['recordlimit']:$limit;
+       // var_dump($limit);die();
         $Pagination = new Pagination($limit,'index.php?controller=negative&action=index&search='.$search);//,$base_url
         $totalRecord = count($Negatives); 
         $totalPages = $Pagination->totalPages($totalRecord); 
@@ -41,10 +43,13 @@ class ManageController extends  BaseController
 
         $this->template->assign('negatives',$Negativelimit);
         $this->template->assign('search',$search);
+        $this->template->assign('limit',$limit);
+        $this->template->assign('totalrecords',$totalRecord);
+        $this->template->assign('totalpages',$totalPages);
 
         $this->template->assign('listPage',$listPage);
 
-
+        
 		return $this->template->fetch('manage/index.tpl');
 	}
    
