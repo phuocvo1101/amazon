@@ -2,16 +2,17 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             
-          
-           <div class="col-xs-6 col-sm-6">
+          <div class="row">
+           <div class="col-xs-6 col-sm-3">
                  <ol class="breadcrumb">   
                   <li><a href="#">Home</a></li>
-                  <li class="active"><a href="#">Order</a></li>
+                  <li class="active">Order</li>
                 </ol>
             </div>
+          </div>
           <div class="row">
-           <div class="col-xs-6 col-sm-3 placeholder">
-              <h1 align="left">Feedback</h1>
+           <div class="col-xs-6 col-sm-6 placeholder">
+              <h1 align="left">Orders</h1>
             </div>
            <div class="col-sm-2"></div>
           
@@ -31,16 +32,16 @@
               <thead>
                 <tr>
                   <th>Amazon Order#</th>
-                  <th>orderdate</th>
-                  <th>datetosend</th>
-                  <th>datesend</th>
-                  <th>buyer</th>
-                  <th>itemspurchased</th>
-                  <th>status</th>
-                  <th>fba</th>
-                  <th>dns</th>
-                  <th>solicitreason</th>
-                  <th>email</th>
+                  <th>Order Date</th>
+                  <th>Date To Send</th>
+                  <th>Date Send</th>
+                  <th>Buyer</th>
+                  <th>Items Purchased</th>
+                  <th>Status</th>
+                  <th>FBA?</th>
+                  <th>DNS?</th>
+                  <th>Solicit Reason</th>
+                  <th>Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,9 +49,9 @@
                     {foreach $orders as $key=>$item}
                 <tr>
                   <td>{$item->amazonorder}</td>
-                  <td>{$item->orderdate}</td>
-                  <td>{$item->datetosend}</td>
-                  <td>{$item->datesend}</td>
+                  <td>{$item->orderdate|date_format:"%D"}</td>
+                  <td>{$item->datetosend|date_format:"%D"}</td>
+                  <td>{$item->datesend|date_format:"%D"}</td>
                   <td>{$item->buyer}</td>
                   <td>{$item->itemspurchased}</td>
                   <td>{$item->status}</td>
@@ -61,6 +62,7 @@
                         MFN
                     {/if}
                   </td>
+                  <td><input type="checkbox" {if $item->dns==1}checked="checked"{/if} value="{$item->dns}" /></td>
                   <td>{$item->solicitreason}</td>
                   <td>{$item->email}</td>
                   
