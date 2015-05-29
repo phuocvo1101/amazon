@@ -17,9 +17,11 @@ class DashboardController extends  BaseController
 	   $totalnagetive=count($this->dashboardModel->sumNegative());
        $totalpositive=count($this->dashboardModel->sumPositive());
        $totalorders=count($this->dashboardModel->sumOrder());
+       
        $this->template->assign('totalnegative',$totalnagetive);
        $this->template->assign('totalpositive',$totalpositive);
        $this->template->assign('totalorders',$totalorders);
+       
 		return $this->template->fetch('dashboard/index.tpl');
 	}
    
